@@ -6,15 +6,36 @@
     "start": "tsc && node dist/app.js",
     "dev": "nodemon --config nodemon.json src/app.ts",
     "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint ./ --ext .js --fix",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "prepare": "husky && husky install",
+    "lint-staged": "lint-staged"
   },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,css}": [
+      "npm run format"
+    ],
+    "src/**/*.{ts,tsx}": [
+      "npm run lint"
+    ]
+  },
+  "pre-commit": "lint-staged",
   "author": "syubban fakhriya",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^22.5.5",
+    "@typescript-eslint/eslint-plugin": "^8.6.0",
+    "@typescript-eslint/parser": "^8.6.0",
+    "eslint": "^9.11.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.9",
+    "jest": "^29.7.0",
     "nodemon": "^3.1.5",
+    "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2"
   },
